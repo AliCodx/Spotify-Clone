@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify</title>
+    <link href="style.css" rel = "stylesheet" />
+    <link rel="stylesheet" href="utility.css">
+</head>
+<body>
+    <header>
+        <img id = "1122" href="wtf" class="spotify-icon" src="svg/Spotify.svg" alt="">
+        <div class="home-icon flex"><img src="svg/Home.svg" alt=""></div>
+        <nav>
+        <div class="nav-left">
+        <div class="search-bar">
+        <img src="svg/searchbar.svg" alt="">
+        <input class="input-bar" type="text" placeholder="What do you want to play?">
+        <img class="browse-icon" src="svg/path.svg" alt="">
+        </div>
+        </div>
+        <div class="nav-right">
+        <button>Premium</button>
+        <button>Support</button>
+        <button>Download</button>
+        <button class="install-button"><img src="svg/download.svg" alt="">Install App</button>
+        <button class="sign-up">Signup</button>
+        <button class="log-in">Log in</button>
+        </div>
+        </nav>
+    </header>
+    <main>
+        <aside >
+            <div class="header">
+                <h4>Your Library</h4>
+                <img src="svg/plus-icon.svg" alt="">
+            </div>
+            <main class="flex-column">
+            <div class="box box1">
+                <h4>Create your first playlist</h4>
+                <p>it's easy,we'll help you</p>
+                <button><b>Create playlist</b></button>
+            </div>
+            <div class="box">
+                <h4>Let's find some podcast to follow</h4>
+                <p>We'll keep you updated on new episodes</p>
+                <button><b>Browse Podcasts</b></button>
+            </div>
+            </main>
+            <footer>
+                <ul>
+                    <li>Legal</li>
+                    <li>Safety&Privacy Center</li>
+                    <li>Privacy Policy</li>
+                    <li>Cookies</li>
+                    <li>AboutAds</li>
+                    <li>Accessibility</li>
+                </ul>
+                <p>Cookies</p>
+                <button class="lang-button flex"><img src="svg/globe.svg" alt="">English</button>
+            </footer>
+        </aside>
+        <section>
+            <div class="trending-songs">
+                <div class="trending-songs-title"><h1 >Trending Songs</h1><button><b>Show all</b></button></div>
+                <div class="trending-songs-cards-container">
+                        <div class="scrollbar-icon-left flex"><img src="svg/scrollbar-left.svg" alt=""></div>
+                    <div class="eachcard">
+                        <img class="cardimg" src="" alt="">
+                        <p></p>
+                        <p>Song by</p>
+                        <button class="playbutton flex"><audio class="playbuttonaudio" src=""></audio><img src="svg/play.svg" alt=""></button>
+                    </div>
+                    <div class="eachcard">
+                        <img class="cardimg" src="" alt="">
+                        <p></p>
+                        <p>Song by</p>
+                        <button class="playbutton flex"><audio class="playbuttonaudio" src=""></audio><img src="svg/play.svg" alt=""></button>
+                    </div>
+                    <div class="eachcard">
+                        <img class="cardimg" src="" alt="">
+                        <p></p>
+                        <p>Song by</p>
+                        <button class="playbutton flex"><audio class="playbuttonaudio" src=""></audio><img src="svg/play.svg" alt=""></button>
+                    </div>
+                    <div class="eachcard">
+                        <img class="cardimg" src="" alt="">
+                        <p></p>
+                        <p>Song by</p>
+                        <button class="playbutton flex"><audio class="playbuttonaudio" src=""></audio><img src="svg/play.svg" alt=""></button>
+                    </div>
+                   <div class="eachcard">
+                        <img class="cardimg" src="" alt="">
+                        <p></p>
+                        <p>Song by</p>
+                        <button class="playbutton flex"><audio class="playbuttonaudio" src=""></audio><img src="svg/play.svg" alt=""></button>
+                    </div>
+                    <div class="eachcard">
+                        <img class="cardimg" src="" alt="">
+                        <p></p>
+                        <p>Song by</p>
+                        <button class="playbutton flex"><audio class="playbuttonaudio" src=""></audio><img src="svg/play.svg" alt=""></button>
+                    </div>
+                    <div class="eachcard">
+                        <img class="cardimg" src="" alt="">
+                        <p></p>
+                        <p>Song by</p>
+                        <button class="playbutton flex"><audio class="playbuttonaudio" src=""></audio><img src="svg/play.svg" alt=""></button>
+                    </div>
+                    <div class="eachcard">
+                        <img class="cardimg" src="" alt="">
+                        <p></p>
+                        <p>Song by</p>
+                        <button class="playbutton flex"><audio class="playbuttonaudio" src=""></audio><img src="svg/play.svg" alt=""></button>
+                    </div>
+                    <div class="scrollbar-icon-right flex"><img src="svg/scrollbar-right.svg" alt=""></div>
+                </div>
+            </div>
+            <div class="playpausebar">
+                <div class="songrange flex">
+                    <div class="songname" id="songname"><p ></p></div>
+                    <div class="songrangebardiv">
+                        <input type="range" id="songrangebar" value="0" max="">
+                        <div class="songrangeoutput"></div>
+                    </div>
+                    
+                </div>
+                <div class="pbf flex">
+                <button class="mainplaybuttons"><img src="svg/backward.svg" alt=""></button>
+                <button class="mainplaybuttons flex mainplaypause" id="mainplaypause"><img  id="mainplaypauseimg"src="svg/play.svg" alt=""></button>
+                <button class="mainplaybuttons"><img src="svg/forward.svg" alt=""></button>
+                </div>
+                <div class="rangediv flex">
+                <button class="mainplaybuttons volumeicon flex"><img src="svg/volume.svg" alt=""></button>
+                
+                <div class=" mainsliderdiv">
+                <input class="sliderrange" id="sliderrange" type="range">
+                <div class="slideroutput flex" id="slideroutput"></div>
+                </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="signadd">
+            <div class="left">
+                <p><b>Preview of spotify</b></p>
+                <p>Sign up to get unlimited songs and podcast with occasional ads. No credit card needed.</p>
+            </div>
+            <div class="right"><button><b>Sign up for free</b></button></div>
+        </div>
+      
+<script src="script.js"></script>
+</body>
+</html>
