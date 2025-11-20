@@ -11,4 +11,9 @@ let songsurl = new URL("http://127.0.0.1:3000/songs/");
 http://127.0.0.1:3000/index.html/ to http://127.0.0.1:3001/songs/ to open the song folder.
 
 -> issue with above code . when we host the project then js not find 127.0.0 ... address because its the liver server local address.
--> so use 
+-> so use another approah . make the json file which contain address of all the songs. & many more explained in the code.
+
+// for static website deployment through vercel always put all the files inside public folder.
+
+
+
