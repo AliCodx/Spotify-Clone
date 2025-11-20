@@ -39,7 +39,7 @@ async function getsongs(){
     // getting songs name
     for(let i in songs){
         songsname[i] = songs[i].replace(".mp3","");
-        songsname[i] = songsname[i].replace("/public/songs/","");
+        songsname[i] = songsname[i].replace("songs/","");
     }
     console.log(songsname);
     // -> end
