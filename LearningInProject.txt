@@ -1,0 +1,14 @@
+// I understand the importance of response.json() and response.text()
+-> use response.json() [this parses the response as Json and converted it into Js array or object]
+* to convert json file into the Js code which exist in Json file if Json file contain object, this convert the Json file object into real Js object and if Js code contain array like, the this converted the Json into real Js array.
+-> use response.text() [this parses the response as Json and converted it into text format]
+* Usefull when we are fetching the local folder using fetch() .
+
+
+
+let songsurl = new URL("http://127.0.0.1:3000/songs/");
+-> open the index.html of project using vs code on google chrome. Then go in the url tab of google and change the address from 
+http://127.0.0.1:3000/index.html/ to http://127.0.0.1:3001/songs/ to open the song folder.
+
+-> issue with above code . when we host the project then js not find 127.0.0 ... address because its the liver server local address.
+-> so use 

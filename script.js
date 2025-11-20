@@ -1,17 +1,23 @@
 // now fetching the songs
-let songsurl = new URL("http://127.0.0.1:3000/songs/");
+// let songsurl = new URL("http://127.0.0.1:3000/public/songs"); // this is only for Local hosting.
 let response;
 songs = [];
 songsname = [];
 async function getsongs(){
-    response = await fetch(songsurl);
-    response = await response.text();
-    // console.log(response);
-    let div = document.createElement("div");
+    //response = await fetch(songsurl); // this line is only for local hosting
+    //response = await response.text(); // this line is for local hosting
+    response = await fetch("/public/songs.json"); // this is for vercel hosting or local hosting
+    response = await response.json();
+    //console.log(response);
+
+
+// this below code is only for local hosting
+ /*   let div = document.createElement("div");
     div.innerHTML = response;
-    // console.log(div);
+    console.log(div);
     let tagA = div.getElementsByTagName("a");
-    // console.log(tagA);
+     console.log(tagA);
+
     for(i=0;i<tagA.length;i++){
         if(tagA[i].href.endsWith("mp3")){
         songs.push(tagA[i].href);
@@ -24,16 +30,32 @@ async function getsongs(){
         songsname[i]=songsname[i].replace(".mp3","");
     }
     // console.log(songsname);
+
+    */
+
+
+   // these below lines are of vercel hosting and we just storing the respose array(which contain songs link) to song (array) for clarity.
+    songs = response; 
+    // getting songs name
+    for(let i in songs){
+        songsname[i] = songs[i].replace(".mp3","");
+        songsname[i] = songsname[i].replace("/public/songs/","");
+    }
+    console.log(songsname);
+    // -> end
 };
 //now fetching the pictures
-let imgurl = new URL("http://127.0.0.1:3000/songs-img/");
+//let imgurl = new URL("http://127.0.0.1:3000/public/songs-img/"); // this line is for local hosting
 let imgresponse;
 img = [];
 async function getimg(){
-    imgresponse = await fetch(imgurl);
-    imgresponse = await imgresponse.text();
+    //imgresponse = await fetch(imgurl); // this line is for local hosting
+    //imgresponse = await imgresponse.text(); // this line is only for local hosting
     // console.log(imgresponse);
-    let div = document.createElement("div");
+    imgresponse = await fetch("/public/songs-img.json"); // this line is for vercel hosting.
+    imgresponse = await imgresponse.json(); // this line is for vercel hosting.
+    // these below lines are for local hosting
+    /*let div = document.createElement("div");
     div.innerHTML = imgresponse;
     // console.log(div);
     let tagA = div.getElementsByTagName("a");
@@ -41,7 +63,11 @@ async function getimg(){
     for(i=0;i<tagA.length;i++){
         if(tagA[i].href.endsWith("jpg")){
         img.push(tagA[i].href);}
-    } 
+    }
+    */
+   // -> end
+   img = imgresponse; // this line is for vercel hosting.
+   
 };
 // linking images to cards
 (function linkImgToCard(){
