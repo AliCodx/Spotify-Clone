@@ -6,7 +6,7 @@ songsname = [];
 async function getsongs(){
     //response = await fetch(songsurl); // this line is only for local hosting
     //response = await response.text(); // this line is for local hosting
-    response = await fetch("/public/songs.json"); // this is for vercel hosting or local hosting
+    response = await fetch("songs.json"); // this is for vercel hosting or local hosting
     response = await response.json();
     //console.log(response);
 
@@ -52,7 +52,7 @@ async function getimg(){
     //imgresponse = await fetch(imgurl); // this line is for local hosting
     //imgresponse = await imgresponse.text(); // this line is only for local hosting
     // console.log(imgresponse);
-    imgresponse = await fetch("/public/songs-img.json"); // this line is for vercel hosting.
+    imgresponse = await fetch("songs-img.json"); // this line is for vercel hosting.
     imgresponse = await imgresponse.json(); // this line is for vercel hosting.
     // these below lines are for local hosting
     /*let div = document.createElement("div");
