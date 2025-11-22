@@ -41,7 +41,7 @@ async function getsongs(){
         songsname[i] = songs[i].replace(".mp3","");
         songsname[i] = songsname[i].replace("songs/","");
     }
-    console.log(songsname);
+    //console.log(songsname);
     // -> end
 };
 //now fetching the pictures
@@ -87,6 +87,7 @@ getsongs().then(()=>{
     for(i=0;i<playbuttonaudiolink.length;i++){
     playbuttonaudiolink[i].setAttribute("src",songs[i]);
 }
+prevANDforwardTrackLogiv();
 //linking songs name
 for(let i=0;i<accessingeachcard.length;i++){
     accessingeachcard[i].children[1].innerText = songsname[i];
@@ -150,8 +151,7 @@ let songendedmonitoring = null;
 let smallbtnRef = null;
 let isMainPlayBtnPress = null;
 songRangeBar.addEventListener("input",stopMovingRangeBarButton); // to stop range bar from moving util user press button.
-buttons.forEach((smallbtn)=>{
-	smallbtn.addEventListener("click",()=>{
+const body = (smallbtn)=>{
         if(isMainPlayBtnPress === true){
             if(song.paused === false){
                 song.pause();
@@ -185,7 +185,10 @@ buttons.forEach((smallbtn)=>{
 				updateutilities(smallbtn);
 			} // of inner else-if
 		} // of outer else-if
-	}) // click event listner
+	}
+
+buttons.forEach((smallbtn)=>{
+	smallbtn.addEventListener("click",()=>{body(smallbtn)}); // click event listner
 }) // of for each
 
 function updateutilities(smallbtn){
@@ -200,7 +203,7 @@ function updateutilities(smallbtn){
         }
         isMainPlayBtnPress = false;
         }
-	if(smallbtn !== previousbutton){
+	if(smallbtn !== previousbutton || isPrevTrack == true){
         if(previoussong !== null && previoussong.paused === false){
             let previoussvg = previousbutton.querySelector("img");
             previoussvg.src = "svg/play.svg";
@@ -463,6 +466,77 @@ mainbtn.addEventListener("click",()=>{
     }
     
 })
+// add logic to back and forward the songs in track.
+var isPrevTrack = false; 
+function prevANDforwardTrackLogiv(){
+    let allAudioTagList = document.querySelectorAll("audio");
+    let allAudioTagSrc = [];
+    for(let i=0;i<allAudioTagList.length;i++){
+        allAudioTagSrc[i] = allAudioTagList[i].getAttribute("src");
+    }
+    //console.log(allAudioTagSrc);
+    let previousTrack = document.getElementById("previousTrack");
+    let forwardTrack = document.getElementById("forwardTrack");
+    let songSrc = null;
+    previousTrack.addEventListener("click",()=>{
+        if(song != null){
+            let playingSongIndex;
+            songSrc = song.getAttribute("src");
+            for(let i in allAudioTagSrc){
+                if(songSrc == allAudioTagSrc[i]){
+                    playingSongIndex = i;
+                    break;
+                }
+            }
+            let prevIndex = 0;
+            if(playingSongIndex == 0){
+                return;
+            }else if(playingSongIndex > 0){
+                prevIndex = playingSongIndex-1;
+            }
+            //console.log(allAudioTagSrc[prevIndex]);
+            let prevSong;
+            prevSong = allAudioTagList[prevIndex];
+            let btn = song.parentElement;
+            body(btn);
+            song = prevSong;
+            let songbtn = song.parentElement;
+            body(songbtn);
+        }
+    });
+    forwardTrack.addEventListener("click",()=>{
+        if(song != null){
+            let playingSongIndex;
+            songSrc = song.getAttribute("src");
+            for(let i in allAudioTagSrc){
+                if(songSrc == allAudioTagSrc[i]){
+                    playingSongIndex = Number(i);
+                    break;
+                }
+            }
+            let nextIndex = 0;
+            if(playingSongIndex == allAudioTagSrc.length-1){
+                return;
+            }
+            else if(playingSongIndex < allAudioTagSrc.length-1){
+                nextIndex = playingSongIndex + 1;
+            }
+            //console.log(allAudioTagSrc[prevIndex]);
+            let nextSong;
+            nextSong = allAudioTagList[nextIndex];
+            let btn = song.parentElement;
+            body(btn);
+            song = nextSong;
+            let songbtn = song.parentElement;
+            body(songbtn);
+        
+        }
+    });
+}
+
+    
+
+
 
 
 
