@@ -143,6 +143,13 @@ function songAudioUpdate(){
     song.removeEventListener("timeupdate",Ref)
     song.addEventListener("timeupdate",Ref);
 }
+//trying to preload the audio
+(function preload(){
+    let allAudioTagList = document.querySelectorAll("audio");
+    for(let i of allAudioTagList){
+        i.load();
+    }
+})();
 //------------------------------------------------------------------------------------------------
 let mainbtn = document.querySelector("#mainplaypause");
 let buttons = document.querySelectorAll(".playbutton");
