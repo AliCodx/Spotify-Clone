@@ -96,8 +96,9 @@ for(let i=0;i<accessingeachcard.length;i++){
 })();
 // slider output func
 (function slideroutputfunc(){
-let sliderrange = document.getElementById("sliderrange");
+var sliderrange = document.getElementById("sliderrange");
 let sliderouput = document.getElementById("slideroutput");
+
 sliderrange.addEventListener("input",()=>{
     slideroutput.innerText = sliderrange.value;
     slideroutput.style.left = `${sliderrange.value}%`;
@@ -135,13 +136,19 @@ function outputbtnpositioncalc(){
         slideroutput.style.transform = 'translatex(-80%)';
     }
 }
-
+function songAudioUpdate(){
+    function Ref(){
+        song.volume = (sliderrange.value/100);
+    }
+    song.removeEventListener("timeupdate",Ref)
+    song.addEventListener("timeupdate",Ref);
+}
 //------------------------------------------------------------------------------------------------
 let mainbtn = document.querySelector("#mainplaypause");
 let buttons = document.querySelectorAll(".playbutton");
 let songRangeBar = document.querySelector("#songrangebar");
 let songRangeOutput = document.querySelector(".songrangeoutput");
-let song = null;
+var song = null;
 let previoussong = null;
 let previousbutton = null; // keep record of previous click btn
 let timeupdate2funcRef;
@@ -169,6 +176,7 @@ const body = (smallbtn)=>{
 			(()=>{
 			song.load();
 			song.play();
+
 			updateutilities(smallbtn);
 			})(); // of Ife expression
 			previousbutton = smallbtn;
@@ -192,6 +200,7 @@ buttons.forEach((smallbtn)=>{
 }) // of for each
 
 function updateutilities(smallbtn){
+    songAudioUpdate();
     let mainbtnsvg = mainbtn.querySelector("img");
     if(smallbtn !== undefined){
 	let btnsvg = smallbtn.querySelector("img");
