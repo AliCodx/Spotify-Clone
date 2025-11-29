@@ -286,14 +286,16 @@ function updateSongNameWithRangeBar(smallbtn){
         let parent = smallbtn.parentElement;
 	    let songname = parent.children[1].innerText;
 	    let songnamecontainer = document.querySelector("#songname");
-	    songnamecontainer.innerText = songname;
+        let songnamecontainerPtag = songnamecontainer.querySelector("span");
+	    songnamecontainerPtag.innerText = songname;
 	    updateSongRangeBar(smallbtn);
     }
     else if(smallbtnRef === null){
         let parent = song.parentElement.parentElement;
         let songname = parent.children[1].innerText;
         let songnamecontainer = document.querySelector("#songname");
-	    songnamecontainer.innerText = songname;
+        let songnamecontainerPtag = songnamecontainer.querySelector("span");
+        songnamecontainerPtag.innerText = songname;
         updateSongRangeBar();
     }
     else{
@@ -559,211 +561,26 @@ function prevANDforwardTrackLogiv(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // playing songs feature execute
-// songplaying();
-// let currentsong = null;
-// function songplaying(){
-// //song playing feature
-// let playbutton = document.querySelectorAll(".playbutton");
-// let currentbutton;
-// let song;
-// playbutton.forEach((button)=>{
-//     button.addEventListener("click",()=>{
-//         song = button.querySelector("audio");
-//         let buttonimg = button.querySelector("img");
-//         // if the same song is double clicked -> play and pause.
-//         if(button === currentbutton){
-//             if(!song.paused){
-//                 buttonimg.setAttribute("src","svg/play.svg");
-//                 song.pause();
-//             }
-//             else{
-//                 if(song.paused){
-//                     buttonimg.setAttribute("src","svg/pause.svg");
-//                     song.play();
-//                 }
-//             }
-//         }else if(button !== currentbutton){
-//             // if another song is playing then stop its playing and start new song.
-//             if(currentsong !== null){
-//             if(!currentsong.paused){
-//                 currentbutton.querySelector("img").setAttribute("src","svg/play.svg");
-//                 currentsong.pause();
-//             };
-//             };
-//             // playing song
-//             buttonimg.setAttribute("src","svg/pause.svg");
-//             song.load();
-//             song.play();
-//             currentsong = song;
-//             currentbutton = button;
-//             songrangecontrol();
-//         }
-//         mainplaypause1();
-        
-//     })
-    
-// })
-// }
-
-
-// function mainplaypause1(){
-//     // this function updating the mainplaypause bar icons when clicks on each card
-//     let mainplaypause = document.getElementById("mainplaypause");
-//     let mainplaypauseimg = document.getElementById("mainplaypauseimg");
-//     if(currentsong !== null){
-//     if(!currentsong.paused){
-//         mainplaypauseimg.src="svg/pause.svg";
-//     }
-//     else if(currentsong.paused){
-//         mainplaypauseimg.src="svg/play.svg";
-//     }
-// }
-// };
-
-// function updatingEachCardSvg(){
-//     let parent = currentsong.parentElement;
-//     let svgTag = parent.querySelector("img");
-//     if(currentsong.paused){
-//         svgTag.src = "svg/play.svg";
-//     }
-//     else if(!currentsong.paused){
-//         svgTag.src = "svg/pause.svg";
-//     }
-// }
-
-// (function mainplaypause2(){
-//       mainplaypause.addEventListener("click",()=>{
-//         if(currentsong !== null){
-//             if(currentsong.paused){
-//                 currentsong.play();
-//                 mainplaypauseimg.src="svg/pause.svg";
-//                 updatingEachCardSvg();
-//             }
-//             else if(!currentsong.paused){
-//                 currentsong.pause();
-//                 mainplaypauseimg.src="svg/play.svg";
-//                 updatingEachCardSvg();
-//             }
-//         }
-//         else if(currentsong === null){
-//             let Allsongs = document.querySelectorAll("audio");
-//             currentIndex = 0;
-//             play();
-//             function play(){
-//                 if(currentIndex>=Allsongs.length){
-//                     currentIndex = 0;
-//                 }
-//                 currentsong = Allsongs[currentIndex];
-//                 currentsong.play();
-//                 updatingEachCardSvg();
-//                 mainplaypause1();
-//             }
-//             currentsong.addEventListener("ended",()=>{
-//                 currentIndex++;
-//                 play();
-//             })
-//             }
-//     })
-// })();
-
-
+let showAllButton = document.getElementById("showAllButton");
+let boldTag = showAllButton.querySelector("b");
+let scrollbarIconRight = document.querySelector(".scrollbar-icon-right");
+let isClick = false;
+showAllButton.addEventListener("click",()=>{
+    let trendingSongsCardsContainer = document.querySelector(".trending-songs-cards-container");
+    if(isClick == false){
+        isClick = true;
+        trendingSongsCardsContainer.style.flexWrap = "wrap";
+        boldTag.innerText = "Close";
+        showAllButton.style.color = "rgb(179,179,179)";
+        scrollbarIconRight.style.visibility = "hidden";
+    }
+    else if(isClick = true){
+        isClick = false;
+        trendingSongsCardsContainer.style.removeProperty("flex-wrap");
+        boldTag.innerText = "Show All";
+        scrollbarIconRight.style.visibility = "visible";
+
+    }
+})
 
 

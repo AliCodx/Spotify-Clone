@@ -62,7 +62,8 @@
         </aside>
         <section>
             <div class="trending-songs">
-                <div class="trending-songs-title"><h1 >Trending Songs</h1><button><b>Show all</b></button></div>
+                <div class="trending-songs-title"><h1 >Trending Songs</h1>
+                    <button id="showAllButton"><b>Show all</b></button></div>
                 <div class="trending-songs-cards-container">
                         <div class="scrollbar-icon-left flex"><img src="svg/scrollbar-left.svg" alt=""></div>
                     <div class="eachcard">
@@ -118,7 +119,9 @@
             </div>
             <div class="playpausebar">
                 <div class="songrange flex">
-                    <div class="songname" id="songname"><p ></p></div>
+                    <div class="songname" id="songname">
+                        <span></span>
+                    </div>
                     <div class="songrangebardiv">
                         <input type="range" id="songrangebar" value="0" max="">
                         <div class="songrangeoutput"></div>

@@ -214,14 +214,22 @@ section{
     margin-right:0.35rem;
     margin-left:0.5rem;
     position:relative;
+    overflow-y:scroll;
+}
+section::-webkit-scrollbar{
+    display:none;
 }
 .trending-songs{
     /* border:3px solid black; */
     max-width:calc(100%-0.85rem);
-    height:20rem;
+    height:26.5rem;
+    overflow-y: auto;
     /* background-color:rgb(35,35,35); */
     margin-top:1rem;
     margin-left:2rem;
+}
+.trending-songs::-webkit-scrollbar{
+    display:none;
 }
 .trending-songs-title{
     display:flex;
@@ -453,16 +461,9 @@ section{
     font-family:'ubuntu';
     overflow:hidden;
 }
-#songname p{
-    animation: scroll-title 7s linear infinite;
-}
-@keyframes scroll-title {
-  0% {
-    transform: translateX(-90%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
+#songname span{
+    white-space: nowrap;
+    display:inline-block; 
 }
 .songrange{
     position:absolute;
