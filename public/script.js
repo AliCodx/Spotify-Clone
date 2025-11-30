@@ -286,16 +286,18 @@ function updateSongNameWithRangeBar(smallbtn){
         let parent = smallbtn.parentElement;
 	    let songname = parent.children[1].innerText;
 	    let songnamecontainer = document.querySelector("#songname");
-        let songnamecontainerPtag = songnamecontainer.querySelector("span");
-	    songnamecontainerPtag.innerText = songname;
+        let songnamecontainerPtag = songnamecontainer.querySelectorAll("span");
+        songnamecontainerPtag[0].innerText = songname;
+	    songnamecontainerPtag[1].innerText = songname;
 	    updateSongRangeBar(smallbtn);
     }
     else if(smallbtnRef === null){
         let parent = song.parentElement.parentElement;
         let songname = parent.children[1].innerText;
         let songnamecontainer = document.querySelector("#songname");
-        let songnamecontainerPtag = songnamecontainer.querySelector("span");
-        songnamecontainerPtag.innerText = songname;
+        let songnamecontainerPtag = songnamecontainer.querySelectorAll("span");
+        songnamecontainerPtag[0].innerText = songname;
+	    songnamecontainerPtag[1].innerText = songname;
         updateSongRangeBar();
     }
     else{
@@ -553,17 +555,23 @@ function prevANDforwardTrackLogiv(){
         }
     });
 }
-
-    
-
-
-
-
-
-
+// these function to visible or hidden the scroll bar button on hover
+function visibilityVisibleRight(){
+    scrollbarIconRight.style.visibility = "visible";
+}
+function visibilityHiddenRight(){
+    scrollbarIconRight.style.visibility = "hidden";
+}
+function visibilityVisibleLeft(){
+    scrollbarIconLeft.style.visibility = "visible";
+}
+function visibilityHiddenLeft(){
+    scrollbarIconLeft.style.visibility = "hidden";
+}
+// show all button logic
 let showAllButton = document.getElementById("showAllButton");
 let boldTag = showAllButton.querySelector("b");
-let scrollbarIconRight = document.querySelector(".scrollbar-icon-right");
+let scrollbarIconRight = document.querySelector("#scrollbar-icon-right");
 let isClick = false;
 showAllButton.addEventListener("click",()=>{
     let trendingSongsCardsContainer = document.querySelector(".trending-songs-cards-container");
@@ -572,15 +580,70 @@ showAllButton.addEventListener("click",()=>{
         trendingSongsCardsContainer.style.flexWrap = "wrap";
         boldTag.innerText = "Close";
         showAllButton.style.color = "rgb(179,179,179)";
+        trendingSongsCardsContainer.removeEventListener("mouseenter",visibilityVisibleRight);
+        trendingSongsCardsContainer.removeEventListener("mouseleave",visibilityHiddenRight);
+        trendingSongsCardsContainer.removeEventListener("mouseenter",visibilityVisibleLeft);
+        trendingSongsCardsContainer.removeEventListener("mouseleave",visibilityHiddenLeft);
         scrollbarIconRight.style.visibility = "hidden";
+        scrollbarIconLeft.style.visibility = "hidden";
+        // to enabled the scrolling vertically after click on showAll.
+        trendingSongsCardsContainer.removeEventListener("wheel", EventDisabled, { passive: false });
+        trendingSongsCardsContainer.removeEventListener("touchmove", EventDisabled, { passive: false });
+        trendingSongsCardsContainer.removeEventListener("keydown", EventDisabled, { passive: false });
     }
     else if(isClick = true){
         isClick = false;
         trendingSongsCardsContainer.style.removeProperty("flex-wrap");
         boldTag.innerText = "Show All";
-        scrollbarIconRight.style.visibility = "visible";
-
+        trendingSongsCardsContainer.addEventListener("mouseenter",visibilityVisibleRight);
+        trendingSongsCardsContainer.addEventListener("mouseleave",visibilityHiddenRight);
     }
 })
-
+// scrollbar buttons logic
+let trendingSongsCardsContainer = document.querySelector(".trending-songs-cards-container");
+// set scroll to zero so user cannot scroll through trackpad , etc.
+// prevent default cancel the event or stop the even from doing.
+// preventDeafult() alone not work unless you use passive : false , it only work when you use preventDeafult() with passive : false
+// The browser has a rule 
+//                      For scroll-related events, I will scroll immediately. I will NOT wait for JavaScript.”
+// what does passive : false do -> Okay fine… I will WAIT. If you say preventDefault(), I won’t scroll.”
+function EventDisabled(e){
+    e.preventDefault();
+}
+// e (event object) is automatically passed by the browser when the event happens. You just need to define the function to accept it.
+trendingSongsCardsContainer.addEventListener("wheel", EventDisabled, { passive: false });
+trendingSongsCardsContainer.addEventListener("touchmove", EventDisabled, { passive: false });
+trendingSongsCardsContainer.addEventListener("keydown", EventDisabled, { passive: false });
+// right scrollbar button logic
+scrollbarIconRight.addEventListener("click",()=>{
+    trendingSongsCardsContainer.scrollBy({
+        left : 200,
+        behavior: "smooth"
+    });
+    scrollbarIconLeft.style.visibility = "visible";
+    trendingSongsCardsContainer.addEventListener("mouseleave",visibilityHiddenLeft);
+    trendingSongsCardsContainer.addEventListener("mouseenter",visibilityVisibleLeft);
+    if(trendingSongsCardsContainer.scrollLeft + trendingSongsCardsContainer.clientWidth >= trendingSongsCardsContainer.scrollWidth-200){
+        trendingSongsCardsContainer.removeEventListener("mouseenter",visibilityVisibleRight);
+        trendingSongsCardsContainer.removeEventListener("mouseleave",visibilityHiddenRight);
+        scrollbarIconRight.style.visibility = "hidden";
+    }
+})
+// left scrollbar button logic
+let scrollbarIconLeft = document.querySelector(".scrollbar-icon-left");
+scrollbarIconLeft.addEventListener("click",()=>{
+    trendingSongsCardsContainer.scrollBy({
+        left : -200,
+        behavior: "smooth"
+    });
+    if(trendingSongsCardsContainer.scrollLeft-200 <= 0){
+        scrollbarIconLeft.style.visibility = "hidden";
+        trendingSongsCardsContainer.removeEventListener("mouseenter",visibilityVisibleLeft);
+    }
+    if(trendingSongsCardsContainer.scrollLeft + trendingSongsCardsContainer.clientWidth <= trendingSongsCardsContainer.scrollWidth+200){
+        scrollbarIconRight.style.visibility = "visible";
+        trendingSongsCardsContainer.addEventListener("mouseenter",visibilityVisibleRight);
+        trendingSongsCardsContainer.addEventListener("mouseleave",visibilityHiddenRight);
+    }
+})
 

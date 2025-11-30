@@ -15,5 +15,10 @@ http://127.0.0.1:3000/index.html/ to http://127.0.0.1:3001/songs/ to open the so
 
 // for static website deployment through vercel always put all the files inside public folder.
 
+// scroll -> scrollLeft → how much you’ve moved from the left (like your walking distance).
+// clientWidth → the window through which you see the content. (the width of the container).
+// scrollWidth → the total length of the whole scrollable area.
+// how to check that "Is the rightmost visible edge touching the end of the content ? "
+// logic -> right edge = scrollLeft + clientWidth
 
 

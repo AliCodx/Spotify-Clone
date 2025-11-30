@@ -65,7 +65,7 @@
                 <div class="trending-songs-title"><h1 >Trending Songs</h1>
                     <button id="showAllButton"><b>Show all</b></button></div>
                 <div class="trending-songs-cards-container">
-                        <div class="scrollbar-icon-left flex"><img src="svg/scrollbar-left.svg" alt=""></div>
+                        <button class="scrollbar-icon-left flex"><img src="svg/scrollbar-left.svg" alt=""></button>
                     <div class="eachcard">
                         <img class="cardimg" src="" alt="">
                         <p></p>
@@ -114,13 +114,16 @@
                         <p>Song by</p>
                         <button class="playbutton flex"><audio class="playbuttonaudio" src=""></audio><img src="svg/play.svg" alt=""></button>
                     </div>
-                    <div class="scrollbar-icon-right flex"><img src="svg/scrollbar-right.svg" alt=""></div>
+                    <button id = "scrollbar-icon-right" class="scrollbar-icon-right flex"><img src="svg/scrollbar-right.svg" alt=""></button>
                 </div>
             </div>
             <div class="playpausebar">
                 <div class="songrange flex">
                     <div class="songname" id="songname">
+                        <div>
                         <span></span>
+                        <span></span>
+                        </div>
                     </div>
                     <div class="songrangebardiv">
                         <input type="range" id="songrangebar" value="0" max="">

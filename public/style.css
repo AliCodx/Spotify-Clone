@@ -38,41 +38,47 @@ nav{
     justify-content: space-between;
     width:100%;
 }
-.nav-left .search-bar{
+.search-bar{
     position:relative;
-    width:450px;
+    width:28vw;
     height:45px;  
     margin-left:7px;
 }
 .nav-left .search-bar input{
+    position:absolute;
+    top:0px;
     border:none;
+    outline : none;
     border-radius:25px;
     background-color:rgb(31,31,31);
     width:100%;
     height:100%; 
+    color:white;
+    font-family: "ubuntu";
+    padding-left: 50px;
 }
-.nav-left .search-bar :first-child{
+.nav-left .search-bar img:first-child{
+    position:absolute;
     height:25px;
     width:25px;
-    position:absolute;
+    z-index:1;
     top:12.5px;
-    left:15px;;
+    left:15px;
 }
 .nav-left .search-bar input::placeholder{
     position:absolute;
-    top:17px;
+    top:15px;
     left:50px;
     font-size:1rem;
 }
 .nav-left .search-bar .browse-icon{
     position: absolute;
-  right: 15px;
+  right:-30px;
   top: 10px;
   width: 25px;
   height: 25px;
   border-left:1px solid rgb(179,179,179);
   padding-left:7px;
-  
 }
 
 
@@ -260,11 +266,13 @@ section::-webkit-scrollbar{
 .trending-songs-cards-container .scrollbar-icon-left{
     position:fixed;
     border-radius:50%;
+    border:none;
     background-color:rgb(31,31,31);
     padding:5px;
     top:245px;
     margin-left:8px;
     visibility:hidden;
+    z-index:1;
 }
 .trending-songs-cards-container .scrollbar-icon-left img{
     width:20px;
@@ -273,6 +281,7 @@ section::-webkit-scrollbar{
 .trending-songs-cards-container .scrollbar-icon-right{
     position:fixed;
     border-radius:50%;
+    border : none;
     background-color:rgb(31,31,31);
     padding:5px;
     top:245px;
@@ -287,6 +296,7 @@ section::-webkit-scrollbar{
 .trending-songs-cards-container .scrollbar-icon-right img{
     width:20px;
     height:20px;
+    
 }
 .trending-songs-cards-container .eachcard{
     position:relative;
@@ -459,11 +469,32 @@ section::-webkit-scrollbar{
     /* font-weight:bold; */
     color:white;
     font-family:'ubuntu';
-    overflow:hidden;
+    overflow:visible;
+    position :relative;
+    overflow : hidden;
+    margin-right:5px;
+}
+#songname div:hover{
+    animation-play-state: paused;
+}
+#songname div{
+    width:200%;
+    position:absolute;
+    animation : reverse-marquee 5s linear infinite;
 }
 #songname span{
+    width:50%;
     white-space: nowrap;
-    display:inline-block; 
+    float: left;
+}
+@keyframes reverse-marquee {
+    0%{
+        right :0;
+    }
+    100%{
+        right: -100%;
+    }
+    
 }
 .songrange{
     position:absolute;
