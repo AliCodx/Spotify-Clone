@@ -304,19 +304,17 @@ section::-webkit-scrollbar{
     background-color:#3be477;
     border-radius:50%;
     border:none;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 8px 0px;
     padding:10px;
     position:absolute;
-    bottom:50px;
+    bottom:90px;
     right:6px;
     visibility:hidden;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 8px 0px;
-    /* transition : transform 5s ease-in 0s; */
 }
 .trending-songs-cards-container .eachcard:hover button{
-    transform:translateY(-45px);
+    transform:translateY(-10px);
+    transition : transform 0.2s linear 0s;
     visibility:visible;
-    
-    
 }
 .trending-songs-cards-container .eachcard button img{
     width:22px;
