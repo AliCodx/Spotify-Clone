@@ -100,6 +100,7 @@ prevANDforwardTrackLogiv();
 for(let i=0;i<accessingeachcard.length;i++){
     accessingeachcard[i].children[1].innerText = songsname[i];
 }
+InputBarMatchingSongs();
 });
 })();
 // slider output func
@@ -573,7 +574,8 @@ let showAllButton = document.getElementById("showAllButton");
 let boldTag = showAllButton.querySelector("b");
 let scrollbarIconRight = document.querySelector("#scrollbar-icon-right");
 let isClick = false;
-showAllButton.addEventListener("click",()=>{
+showAllButton.addEventListener("click", controlLeftRightScrollFn);
+function controlLeftRightScrollFn(){
     let trendingSongsCardsContainer = document.querySelector(".trending-songs-cards-container");
     if(isClick == false){
         isClick = true;
@@ -597,8 +599,12 @@ showAllButton.addEventListener("click",()=>{
         boldTag.innerText = "Show All";
         trendingSongsCardsContainer.addEventListener("mouseenter",visibilityVisibleRight);
         trendingSongsCardsContainer.addEventListener("mouseleave",visibilityHiddenRight);
+        // to again disabled the horizontall scolling after click on close.
+        trendingSongsCardsContainer.addEventListener("wheel", EventDisabled, { passive: false });
+        trendingSongsCardsContainer.addEventListener("touchmove", EventDisabled, { passive: false });
+        trendingSongsCardsContainer.addEventListener("keydown", EventDisabled, { passive: false });
     }
-})
+}
 // scrollbar buttons logic
 let trendingSongsCardsContainer = document.querySelector(".trending-songs-cards-container");
 // set scroll to zero so user cannot scroll through trackpad , etc.
@@ -646,4 +652,51 @@ scrollbarIconLeft.addEventListener("click",()=>{
         trendingSongsCardsContainer.addEventListener("mouseleave",visibilityHiddenRight);
     }
 })
+let controlLeftRight = null;
+function InputBarMatchingSongs(){
+    // use input in seach bar
+let inputBar = document.getElementById("input-bar");
+let allCards = document.querySelectorAll(".eachcard");
+let trendingSongsHeading = document.querySelector("#trendingSongsHeading");
+let songsName = [];
+allCards.forEach((Card,index)=>{
+    // extracting list of song names
+    songsName[index] = Card.querySelector("p").innerText.toLowerCase();
+})
+inputBar.addEventListener("input",()=>{
+    let count = 0;
+    let inputValue = document.getElementById("input-bar").value.toLowerCase(); // convert the user enter value into lower case.
+    // empty input tag gives the empty string.
+    if(inputValue != ""){
+        trendingSongsHeading.innerText = "Show Result";
+    }
+    else{
+        trendingSongsHeading.innerText = "Trending Songs";
+    }
+    songsName.forEach((song,index)=>{
+        if(song.includes(inputValue)){
+            allCards[index].style.display = "block";
+            count++;
+        }
+        else{
+            allCards[index].style.display = "none";
+        }
+    });
+    if(trendingSongsCardsContainer.scrollWidth <= trendingSongsCardsContainer.clientWidth){
+        trendingSongsCardsContainer.addEventListener("mouseleave",visibilityHiddenRight);
+        trendingSongsCardsContainer.addEventListener("mouseenter",visibilityHiddenRight);
+        showAllButton.style.display = "none";
+    }
+    else if(trendingSongsCardsContainer.scrollWidth > trendingSongsCardsContainer.clientWidth){
+        trendingSongsCardsContainer.removeEventListener("mouseleave",visibilityHiddenRight);
+        trendingSongsCardsContainer.removeEventListener("mouseenter",visibilityHiddenRight);
+        trendingSongsCardsContainer.addEventListener("mouseenter",visibilityVisibleRight);
+        trendingSongsCardsContainer.addEventListener("mouseleave",visibilityHiddenRight);
+        showAllButton.style.display = "block";
+    }
+    if(count == 0){
+        trendingSongsHeading.innerText = "No Song Found";
+    }
+})
+}
 

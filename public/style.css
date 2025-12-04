@@ -288,7 +288,6 @@ section::-webkit-scrollbar{
     right:0px;
     margin-right:15px;
     visibility:hidden;
-    
 }
 .trending-songs-cards-container:hover .scrollbar-icon-right{
     visibility:visible;
